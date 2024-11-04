@@ -1,1 +1,105 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabbed Website</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to CSS -->
+</head>
+<body>
+    <div class="tab-container">
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'Tab1')">Tab 1</button>
+            <button class="tab-button" onclick="openTab(event, 'Tab2')">Tab 2</button>
+            <button class="tab-button" onclick="openTab(event, 'Tab3')">Tab 3</button>
+        </div>
+
+        <div id="Tab1" class="tab-content active">
+            <h2>Content for Tab 1</h2>
+            <p>This is the content of the first tab.</p>
+        </div>
+
+        <div id="Tab2" class="tab-content">
+            <h2>Content for Tab 2</h2>
+            <p>This is the content of the second tab.</p>
+        </div>
+
+        <div id="Tab3" class="tab-content">
+            <h2>Content for Tab 3</h2>
+            <p>This is the content of the third tab.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script> <!-- Link to JavaScript -->
+</body>
+</html>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.tab-container {
+    width: 80%;
+    margin: auto;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ccc;
+}
+
+.tab-button {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+.tab-button.active {
+    background-color: #ccc;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+</style>
+
+<script>
+  // Function to open a specific tab
+function openTab(evt, tabName) {
+    // Get all elements with class "tab-content" and hide them
+    var i, tabcontent, tabbuttons;
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("active");
+    }
+
+    // Get all elements with class "tab-button" and remove "active" class
+    tabbuttons = document.getElementsByClassName("tab-button");
+    for (i = 0; i < tabbuttons.length; i++) {
+        tabbuttons[i].classList.remove("active");
+    }
+
+    // Show the current tab and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+}
+
+// Set default active tab
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.tab-button.active').click();
+});
+
+</script>
